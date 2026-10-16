@@ -1,0 +1,38 @@
+# === 后端 Java ===
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+my-log/
+
+# === 前端 Node ===
+node_modules/
+dist/
+dist-ssr/
+*.local
+.eslintcache
+
+# === 上传文件（图片等运行时数据）===
+upload/
+server/upload/
+
+# === IDE ===
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+
+# === 系统 ===
+.DS_Store
+Thumbs.db
+
+# === 其他 ===
+.claude/
+my-log/
+*.log.*

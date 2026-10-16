@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS `b_ai_product_profile` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `thing_id` bigint NOT NULL COMMENT '商品ID，对应 b_thing.id',
+  `profile_json` longtext COMMENT 'AI 生成的完整结构化档案 JSON',
+  `search_text` text COMMENT '导购召回使用的合并检索文本',
+  `keywords` varchar(1000) DEFAULT NULL COMMENT '关键词，逗号分隔',
+  `scenes` varchar(1000) DEFAULT NULL COMMENT '适用场景，逗号分隔',
+  `target_users` varchar(1000) DEFAULT NULL COMMENT '目标人群，逗号分隔',
+  `selling_points` text COMMENT '核心卖点，逗号分隔',
+  `specs` text COMMENT '规格参数 JSON',
+  `image_summary` text COMMENT '图片/封面识别摘要，第一版可由文本模型兜底',
+  `content_quality_score` int DEFAULT 0 COMMENT '商品资料完整度评分 0-100',
+  `source_hash` varchar(64) DEFAULT NULL COMMENT '商品基础信息指纹，用于判断是否需要重新生成',
+  `status` varchar(20) DEFAULT 'READY' COMMENT 'READY/FALLBACK/FAILED',
+  `error_message` varchar(1000) DEFAULT NULL COMMENT '生成异常信息',
+  `generated_at` varchar(32) DEFAULT NULL COMMENT '生成时间戳',
+  `create_time` varchar(32) DEFAULT NULL COMMENT '创建时间戳',
+  `update_time` varchar(32) DEFAULT NULL COMMENT '更新时间戳',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_ai_product_profile_thing_id` (`thing_id`),
+  KEY `idx_ai_product_profile_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品 AI 导购档案表';
